@@ -78,7 +78,7 @@ Vue.use(Antd);
         $path_vendor = base_path('vendor');
 
         // cài đặt gói antd
-        $path_copy_css = $path_vendor.'\hunglt\base-repository-laravel\lib\antd.css';
+        $path_copy_css = $path_vendor.'\hunglt\base-vue-laravel\lib\antd.css';
         $path_css = base_path('node_modules\ant-design-vue\dist');
         shell_exec('npm install ant-design-vue --save');
         $this->line('Đã cài đặt xong thư viện, tiếp tục chèn css customize');
@@ -92,7 +92,7 @@ Vue.use(Antd);
         $this->line('Thay đổi css thành công, tiếp tục setup base component');
 
         //Cài đặt folder base của vue
-        $path_copy_vue = $path_vendor.'\hunglt\base-repository-laravel\base\lib\base';
+        $path_copy_vue = $path_vendor.'\hunglt\base-vue-laravel\base\lib\base';
         $path_paste_vue = base_path('resources\js');
         $command_copy_vue = 'cp -avr '.$path_copy_vue. ' '.$path_paste_vue;
         shell_exec($command_copy_vue);

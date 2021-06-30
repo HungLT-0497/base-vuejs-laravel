@@ -16,8 +16,7 @@
       }
     ],
     "require": {
-      "php": ">=7.1",
-        "hunglt/base-repository-laravel": "dev-main"
+      "php": ">=7.1"
     },
     "require-dev": {
     },
