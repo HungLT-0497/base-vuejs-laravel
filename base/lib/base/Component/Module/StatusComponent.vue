@@ -16,7 +16,8 @@ export default {
     watch: {
         change_value: {
             handler() {
-                this.getStatus(this.data, this.option)
+                if (this.data && this.option)
+                    this.getStatus(this.data, this.option)
             },
             deep: true,
             immediate: true
@@ -55,7 +56,6 @@ export default {
 <style scoped>
 .status{
     display: flex;
-    margin-left: 10px;
     align-items: center;
     align-content: center;
 }

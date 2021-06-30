@@ -18,20 +18,29 @@ class Table {
             if (value.action && get_action) {
                 [slot, name_slot] = convertAction(value, key, slot)
             } else {
-                if (value.info && value.info.type == 'status'){
+                var sub_slot = {}
+                if (value.info && (value.info.type == 'status')){
                     name_slot += 'status_' + key
-                    slot.push({
+                    sub_slot = {
                         name: name_slot,
-                        value: value.info.value
-                    })
-                }
-                if (value.info && value.info.type == 'time'){
+                        value: value.info.value,
+                        filter: value.filter ? value.filter : null
+                    }
+                }else if (value.info && value.info.type == 'time'){
                     name_slot += 'time_' + key
-                    slot.push({
+                    sub_slot = {
                         name: name_slot,
-                        value: value.info.value
-                    })
+                        value: value.info.value,
+                        filter: value.filter ? value.filter : null
+                    }
+                }else {
+                    name_slot += 'text_' + key
+                    sub_slot = {
+                        name: name_slot,
+                        filter: value.filter ? value.filter : null
+                    }
                 }
+                slot.push(sub_slot)
             }
             if (name_slot) {
                 sub_column.scopedSlots = {customRender: name_slot}
@@ -59,6 +68,16 @@ class Table {
     getDetailColumn(column, all){
 
     }
+}
+export function castGameToOption() {
+    var data = JSON.parse(window.games).map(item => {
+        return {
+            data_index: item.id,
+            icon: '',
+            title: item.title,
+        }
+    })
+    return data
 }
 
 function capitalizeFirstLetter(string) {

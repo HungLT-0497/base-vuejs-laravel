@@ -31,6 +31,10 @@
                         <div v-if="item.name.indexOf('status_') != -1" >
                             <StatusComponent :data="text" :option="item.value"></StatusComponent>
                         </div>
+                        <!-- handle slot status-->
+                        <div v-if="item.name.indexOf('text_') != -1" >
+                            {{ format(text, item.filter) }}
+                        </div>
                     </template>
                 </a-table>
                 <f-pagination :data_pagination="data_all_convert" @change_pagination="(page) => changePage(page)">
@@ -45,6 +49,7 @@ import Service from "../../JS/Utils/Service";
 import Pagination from './Pagination';
 import StatusComponent from "../Module/StatusComponent";
 import vi from 'ant-design-vue/es/locale/vi_VN';
+import Vue from "vue";
 
 export default {
     components: {
@@ -89,6 +94,14 @@ export default {
         [this.columns_convert, this.slot] = this.config_list
     },
     methods: {
+        format(value, filter){
+            if (filter){
+                var result = Vue.filter(filter)(value)
+                if (result)
+                    return result
+            }
+            return value
+        },
         actionDelete(id){
             console.log(id)
         },

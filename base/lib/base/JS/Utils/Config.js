@@ -1,210 +1,110 @@
+import Util, {castGameToOption} from './Table'
 var config_columns = [
     {
-        data_index: 'game_id',
-        title: 'Game ID',
+        data_index: 'order_no',
+        title: 'Mã giao dịch',
         action: {
             type: 'detail',
-            key: 'game_id'
+            key: 'id'
         }
     },
     {
-        data_index: 'game_name',
-        title: 'Game'
+        data_index: 'order_id',
+        title: 'Mã đối tác'
     },
     {
-        data_index: 'percentage',
-        title: 'Tiến độ',
+        data_index: 'amount',
+        title: 'Số tiền',
         info: {
             type: 'text',
             value: (value) => {
-                return value + ' %'
+                return value + '$'
             }
         }
     },
     {
-        data_index: 'status_game',
-        title: 'Trạng thái',
+        title: 'User ID',
+        data_index: 'user_id',
+    },
+    {
+        title: 'Phương thức thanh toán',
+        data_index: 'type_payment',
         info: {
             type: 'status',
             value: [
                 {
-                    data_index: 0,
-                    icon: '<p class="badge badge-info badge-custom"><span class="fa fa-refresh"></span></p>',
-                    title: 'Chưa ra mắt'
-                },
-                {
                     data_index: 1,
-                    icon: '<p class="badge badge-success badge-custom"> <span class="fa fa-check"></span></p>',
-                    title: 'Đã ra mắt'
+                    icon: 'google',
+                    title: 'GOOGLE'
                 },
                 {
                     data_index: 2,
-                    icon: '<p class="badge badge-success badge-custom"> <span class="fa fa-check"></span></p>',
-                    title: 'Đóng cửa'
-                },
+                    icon: 'apple',
+                    title: 'APPLE'
+                }
             ]
         }
     },
     {
-        data_index: 'enable_payment',
-        title: 'Bật nạp',
-        info: {
-            type: 'status',
-            value: [
-                {
-                    data_index: 1,
-                    icon: '<p class="badge badge-success badge-custom"><span class="fa fa-check"></span></p>',
-                    title: 'Bật'
-                },
-                {
-                    data_index: 0,
-                    icon: '<p class="badge badge-danger badge-custom"><span class="fa fa-times"></span></p>',
-                    title: 'Tắt'
-                },
-            ]
+        title: 'Game',
+        data_index: 'game_id',
+        info:{
+          type: 'status',
+          value: castGameToOption()
         }
     },
     {
-        data_index: 'is_maintain',
-        title: 'Bảo trì',
-        info: {
-            type: 'status',
-            value: [
-                {data_index: 1, icon: '', title: 'Có'},
-                {data_index: 0, icon: '', title: 'Không'},
-            ]
-        }
+        title: 'Thời gian mua hàng',
+        data_index: 'purchaseTimeMillis',
+        filter: 'timestampToDatetime'
     },
     {
-        data_index: 'publisher',
-        title: 'Publisher',
-        info: {
-            type: 'status',
-            value: [
-                {data_index: 1, icon: 'apple', title: 'Hồng Hà'},
-                {data_index: 2, icon: 'android', title: 'Funtap'},
-                {data_index: 3, icon: '', title: 'CoPub'},
-                {data_index: 4, icon: '', title: 'IP Funtap'},
-                {data_index: 5, icon: '', title: 'EN Funtap'},
-            ]
-        }
+        title: 'Thời gian Refund',
+        data_index: 'voidedTimeMillis',
+        filter: 'timestampToDatetime'
     },
-    {
-        title: 'T/G ra mắt',
-        data_index: 'publish_at'
-    },
-    {
-        title: 'Thao tác',
-        action: {
-            type: 'edit',
-            key: 'id',
-            link: '/game-config/id'
-        }
-    },
-    {
-        title: 'Thao tác',
-        action: {
-            type: 'delete',
-            key: 'id',
-            link: '/game-config/id'
-        }
-    }
 ]
 var config_detail = {
     columns_more: [
-        {
-            data_index: 'id',
-            title: 'ID',
-        },
-        {
-            data_index: 'game_alias',
-            title: 'Game alias',
-        },
-        {
-            data_index: 'type',
-            title: 'Loại game',
-            info: {
-                type: 'status',
-                value: [
-                    {data_index: 1, icon: '', title: 'Hồng Hà'},
-                    {data_index: 2, icon: '', title: 'Funtap'},
-                    {data_index: 3, icon: '', title: 'CoPub'}
-                ]
-            }
-        },
-        {
-            data_index: 'enable_giftcode',
-            title: 'Bật giftcode',
-            info: {
-                type: 'status',
-                value: [
-                    {data_index: 1, icon: '', title: 'Bật'},
-                    {data_index: 2, icon: '', title: 'Tắt'}
-                ]
-            }
-        },
-        {
-            title: 'Trạng thái',
-            data_index: 'status_game',
-            info: {
-                type: 'status',
-                value: [
-                    {data_index: 0, icon: '', title: 'Chưa ra mắt'},
-                    {data_index: 1, icon: '', title: 'Đã ra mắt'},
-                    {data_index: 2, icon: '', title: 'Đóng cửa'}
-                ]
-            }
-        },
-        {
-            title: 'Link tải game',
-            data_index: 'url_download',
-        },
-        {
-            title: 'Tag',
-            data_index: 'tag',
-        },
-        {
-            title: 'Link trang chủ',
-            data_index: 'url_homepage',
-        },
-        {
-            title: 'Ảnh',
-            data_index: 'url_avatar'
-        },
-        {
-            title: 'T/G tạo',
-            data_index: 'created_at',
-        },
-        {
-            title: 'T/G Cập nhật',
-            data_index: 'updated_at'
-        }
-
     ],
     tabs: [
         {
-            'name': 'Thông tin game',
+            'name': 'Chi tiết giao dịch',
             'column':
-                ['id', 'game_name', 'game_id', 'game_alias', 'publisher', 'type', 'url_download', 'url_homepage',
-                    'url_avatar', 'enable_payment', 'enable_giftcode', 'tag', 'publish_at', 'created_at', 'updated_at'
-                ]
+                ['order_no', 'order_id', 'game_id', 'user_id', 'amount', 'type_payment', 'purchaseTimeMillis', 'voidedTimeMillis']
         }
     ],
-    link: '/game-config',
+    link: '/orders/log_refund_orders/show',
 }
 var config_filter = {
     columns_more: [
         {
-            data_index: 'time_start',
-            title: 'Thời gian bắt đầu',
+            data_index: 'time_pur_start',
+            title: 'Thời gian bắt đầu mua hàng',
             info: {
                 type: 'time',
                 value: 'YYYY-MM-DD HH:mm:ss'
             }
         },
         {
-            data_index: 'time_end',
-            title: 'Thời gian kết thúc',
+            data_index: 'time_pur_end',
+            title: 'Thời gian kết thúc mua hàng',
+            info: {
+                type: 'time',
+                value: 'YYYY-MM-DD HH:mm:ss'
+            }
+        },
+        {
+            data_index: 'time_refund_start',
+            title: 'Thời gian bắt đầu refund',
+            info: {
+                type: 'time',
+                value: 'YYYY-MM-DD HH:mm:ss'
+            }
+        },
+        {
+            data_index: 'time_refund_end',
+            title: 'Thời gian kết thúc refund',
             info: {
                 type: 'time',
                 value: 'YYYY-MM-DD HH:mm:ss'
@@ -213,26 +113,23 @@ var config_filter = {
     ],
     columns: [
         {
-            data_index: 'status_game',
+            data_index: 'game_id',
         },
         {
-            data_index: 'enable_payment',
-          /*  info: {
-                multiple: true
-            },*/
+            data_index: 'type_payment',
         },
         {
-            data_index: 'enable_giftcode',
+            data_index: 'time_pur_start',
         },
         {
-            data_index: 'publisher',
-        },
-      /*  {
-            data_index: 'time_start',
+            data_index: 'time_pur_end',
         },
         {
-            data_index: 'time_end',
-        }*/
+            data_index: 'time_refund_start',
+        },
+        {
+            data_index: 'time_refund_end',
+        }
     ]
 }
 
