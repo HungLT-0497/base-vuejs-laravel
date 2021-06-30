@@ -1,0 +1,52 @@
+{
+    "name": "hunglt/base-vue-laravel",
+    "description": "Base vue crud implementation for Laravel",
+    "keywords": [
+      "laravel",
+      "repository",
+      "repository pattern",
+      "eloquent",
+      "base_vue"
+    ],
+    "license": "BSD-2-Clause",
+    "authors": [
+      {
+        "name": "HungLT",
+        "email": "Hunglt@funtap.vn"
+      }
+    ],
+    "require": {
+      "php": ">=7.1",
+        "hunglt/base-repository-laravel": "dev-main"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+      "psr-4": {
+        "HungLT\\": "src/"
+      },
+        "files": [
+            "support/functions.php"
+        ]
+    },
+    "autoload-dev": {
+      "files": [
+        "tests/TestFunctions.php"
+      ],
+      "psr-4": {
+        "HungLT\\Test\\": "tests"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+            "HungLT\\BaseVueServiceProvider"
+        ]
+      }
+    },
+    "archive" : {
+      "exclude": [
+        "/tests"
+      ]
+    }
+  }

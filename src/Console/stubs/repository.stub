@@ -1,0 +1,11 @@
+<?php
+
+namespace DummyNamespace;
+
+use HungLT\Repository\AbstractRepository;
+use DummyNamespace\DummyClassInterface;
+
+class DummyClass extends AbstractRepository implements DummyClassInterface
+{
+    //
+}

@@ -1,0 +1,9 @@
+<?php
+use Illuminate\Support\Facades\Route;
+Route::group(['namespace' => 'Base'], function () {
+    Route::get('index', 'DummyClassController@index');
+    Route::get('show/{id}', 'DummyClassController@show');
+    Route::put('update/{id}', 'DummyClassController@update');
+    Route::post('create', 'DummyClassController@create');
+    Route::delete('delete', 'DummyClassController@delete');
+});

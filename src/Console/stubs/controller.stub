@@ -1,0 +1,135 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Models\DummyModelClass;
+
+class DummyModelClassController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $request = $request->all();
+        $query = DummyModelClass::query();
+        foreach ($request as $key => $value) {
+            if (!empty($value) && $key != 'page') {
+                $query = $query->where($key, $value);
+            }
+        }
+        $query = $query->paginate();
+        return $this->responseSuccess($query);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCount(Request $request)
+    {
+        try {
+            $request = $request->all();
+            $query = DummyModelClass::query();
+            foreach ($request as $key => $value) {
+                if (!empty($value) && $key != 'page') {
+                    $query = $query->where($key, $value);
+                }
+            }
+            $query = $query->count();
+            return $this->responseSuccess($query);
+        } catch (\Exception $exception){
+            return $this->responseError();
+        }
+    }
+
+    public function getTotal(Request $request, $column)
+    {
+        try {
+            $request = $request->all();
+            $query = DummyModelClass::query();
+            foreach ($request as $key => $value) {
+                if (!empty($value) && $key != 'page') {
+                    $query = $query->where($key, $value);
+                }
+            }
+            $query = $query->sum($column);
+            return $this->responseSuccess($query);
+        } catch (\Exception $exception){
+            return $this->responseError();
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        try {
+            $record = DummyModelClass::find($id);
+            return $this->responseSuccess($record);
+        } catch (\Exception $exception) {
+            return $this->responseError();
+        }
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        try {
+            $record = DummyModelClass::where('id',$id)->update($request->all());
+            return $this->responseSuccess($record);
+        } catch (\Exception $exception) {
+            return $this->responseError();
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        try {
+            $record = DummyModelClass::find($id);
+            $record->delete();
+            return $this->responseSuccess($record);
+        } catch (\Exception $exception) {
+            return $this->responseError();
+        }
+    }
+    public function responseSuccess($data, $message = 'Thành công'){
+        return response()->json(['code' => 0, 'data' => $data, 'message' => $message], 200);
+    }
+    public function responseError($message = 'Thất bại'){
+        return response()->json(['code' => 0, 'data' => [], 'message' => $message], 200);
+    }
+}
