@@ -5,5 +5,7 @@ Route::group(['namespace' => 'Base'], function () {
     Route::get('show/{id}', 'DummyClassController@show');
     Route::put('update/{id}', 'DummyClassController@update');
     Route::post('create', 'DummyClassController@create');
+    Route::get('get_count', 'DummyClassController@getCount');
+    Route::get('get_total/{column}', 'DummyClassController@getTotal');
     Route::delete('delete', 'DummyClassController@delete');
 });
