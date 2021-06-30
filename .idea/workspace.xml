@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93b91928-bb34-4660-919f-85a3401a7cf4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Console/stubs/router.stub" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console/stubs/router.stub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/lib/base/Component/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/base/lib/base/Component/Index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
       <workItem from="1623127587251" duration="3244000" />
       <workItem from="1623134879583" duration="200000" />
       <workItem from="1623135082829" duration="6338000" />
-      <workItem from="1625023216439" duration="1117000" />
+      <workItem from="1625023216439" duration="1908000" />
     </task>
     <servers />
   </component>
