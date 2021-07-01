@@ -23,6 +23,7 @@ class Table {
                     name_slot += 'status_' + key
                     sub_slot = {
                         name: name_slot,
+                        have_total: value.have_total ? value.have_total : false,
                         value: value.info.value,
                         filter: value.filter ? value.filter : null
                     }
@@ -30,6 +31,7 @@ class Table {
                     name_slot += 'time_' + key
                     sub_slot = {
                         name: name_slot,
+                        have_total: value.have_total ? value.have_total : false,
                         value: value.info.value,
                         filter: value.filter ? value.filter : null
                     }
@@ -37,6 +39,7 @@ class Table {
                     name_slot += 'text_' + key
                     sub_slot = {
                         name: name_slot,
+                        have_total: value.have_total ? value.have_total : false,
                         filter: value.filter ? value.filter : null
                     }
                 }

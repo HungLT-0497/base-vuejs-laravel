@@ -15,6 +15,7 @@ var config_columns = [
     {
         data_index: 'amount',
         title: 'Số tiền',
+        have_total: true,
         info: {
             type: 'text',
             value: (value) => {

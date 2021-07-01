@@ -37,7 +37,7 @@
                         </div>
                     </template>
                 </a-table>
-                <f-pagination :data_pagination="data_all_convert" @change_pagination="(page) => changePage(page)">
+                <f-pagination :column_pagination="columns_convert" :link_total="link" :slot_pagination="slot" :data_pagination="data_all_convert" @change_pagination="(page) => changePage(page)">
                 </f-pagination>
             </a-spin>
         </a-config-provider>
@@ -140,7 +140,6 @@ export default {
 
 <style scoped>
 .f-container {
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;
     color: #23282c;
     font-size: 13px;
 }

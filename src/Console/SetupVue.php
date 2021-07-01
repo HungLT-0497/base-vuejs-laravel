@@ -40,8 +40,9 @@ class SetupVue extends Command
         $path_js = base_path('resources\js');
 
         $content_app = file_get_contents($path_js.'\app.js');
-        $content_app = substr($content_app, 0,strpos($content_app, 'import')).
+        $content_app = substr($content_app, 0,strpos($content_app, 'Vue.use')).
             'import Antd from "ant-design-vue";
+import "ant-design-vue/dist/antd.css";
 Vue.use(Antd);
 '
             .substr($content_app, strpos($content_app, 'import'));

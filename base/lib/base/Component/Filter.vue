@@ -11,9 +11,9 @@
             <a-form-model :model="form" layout="vertical" class="form-filter">
                 <a-form-model-item v-for="item in convert_filter" :label="item.title" :key="item.data_index">
                     <a-input v-if="item.type == 'text'" v-model="form[item.data_index]"></a-input>
-                    <a-select v-if="item.type == 'select'" v-model="form[item.data_index]" option-filter-prop="children" :filter-option="filterOption" show-search
+                    <a-select v-if="item.type == 'select'" v-model="form[item.data_index]" option-filter-prop="label" show-search
                               :mode="item.default ? 'multiple' : 'default'" allowClear>
-                        <a-select-option  v-for="item_option in item.option" :key="item_option.data_index"
+                        <a-select-option  v-for="item_option in item.option" :key="item_option.data_index" :label="item_option.title"
                                          :value="item_option.data_index">
                             <StatusComponent :data="item_option.data_index" :option="item.option"></StatusComponent>
                         </a-select-option>
@@ -107,6 +107,7 @@ export default {
     methods: {
         moment,
         filterOption(input, option) {
+            console.log(input, option)
             return (
                 option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
             );
